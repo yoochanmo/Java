@@ -23,7 +23,7 @@ import java.sql.Statement;
  	1 . JDBC드라이버 로드(DB에 따라 드라이버가 상이)
  		
  		a . Oracle 드라이버로딩 : Class.forName("oracle.jdbc.OracleDriver");
- 		b . MariaDB 드라이버로딩 : Class.forName("org.mariadb.jdbc.Driver");
+ 		b . MariDB 드라이버로딩 : Class.forName("org.mariadb.jdbc.Driver");
  		c . MySQL 드라이버로딩  : Class.forName("com.mysql.jdbc.driver");
  		
  		Class.forName()메서드는 드라이버를 읽기만 하면 자동으로 객체가 생성되고
