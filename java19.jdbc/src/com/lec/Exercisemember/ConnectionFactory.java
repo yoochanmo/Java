@@ -40,10 +40,10 @@ public class ConnectionFactory {
 		p.load(new FileReader(path));
 		
 		// 1 . DB접속정보
-		DRV = p.getProperty("jdbc.mariadb.drv");
-		URL = p.getProperty("jdbc.mariadb.url");
-		USR = p.getProperty("jdbc.mariadb.usr");
-		PWD = p.getProperty("jdbc.mariadb.pwd");
+		DRV = p.getProperty("jdbc.drv");
+		URL = p.getProperty("jdbc.url");
+		USR = p.getProperty("jdbc.usr");
+		PWD = p.getProperty("jdbc.pwd");
 		
 		
 		// 2 . sql정보
@@ -53,16 +53,16 @@ public class ConnectionFactory {
 		update= p.getProperty("update");
 		delete= p.getProperty("delete");
 		
-		System.out.println(DRV);
-		System.out.println(URL);
-		System.out.println(USR);
-		System.out.println(PWD);
-		
-		
-		System.out.println(insert);
-		System.out.println(select);
-		System.out.println(update);
-		System.out.println(delete);
+//		System.out.println(DRV);
+//		System.out.println(URL);
+//		System.out.println(USR);
+//		System.out.println(PWD);
+//		
+//		
+//		System.out.println(insert);
+//		System.out.println(select);
+//		System.out.println(update);
+//		System.out.println(delete);
 		
 		Class.forName(DRV);
 		
@@ -70,7 +70,7 @@ public class ConnectionFactory {
 
 	public Connection getConnection() {
 		try {
-			//System.out.println("db연결성공");
+			System.out.println("db연결성공");
 			return DriverManager.getConnection(URL,USR,PWD);
 		} catch (SQLException e) {
 			System.out.println("db연결실패");

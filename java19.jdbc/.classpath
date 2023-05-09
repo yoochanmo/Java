@@ -8,6 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="ojdbc8.jar"/>
 	<classpathentry kind="lib" path="src/com/lec/mariadb-java-client-3.1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dnlse/OneDrive/Desktop/mariadb-java-client-3.1.4.jar"/>
+	<classpathentry kind="lib" path="JDBCConnector.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

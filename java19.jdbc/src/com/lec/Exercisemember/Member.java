@@ -8,7 +8,7 @@ public class Member {
 		
 		MemberMenu menu = new MemberMenu(1.0);
 		//menu.mainMenu();
-		menu.mainBoardMenu();
+		menu.mainMemberMenu();
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.lec.Exercisemember;
 
-public class MemberVo {
+public class MemberVO {
 
 	private String member_id;
 	private String member_pw;
@@ -8,16 +8,15 @@ public class MemberVo {
 	private int member_age;
 	private String member_gender;
 	private String member_email;
-
-	public MemberVo() {
+	
+	
+	public MemberVO() {
 		this.member_id = null;
 		this.member_pw = null;
 		this.member_name = null;
 		this.member_age = 0;
 		this.member_gender = null;
 		this.member_email = null;
-		
-		
 	}
 
 	public String getMember_id() {
@@ -76,5 +75,7 @@ public class MemberVo {
 				+ "\t\t" + member_age + "\t\t" + member_gender + "\t\t" + member_email
 				;
 	}
+
+
 }
 

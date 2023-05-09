@@ -17,6 +17,7 @@ public class MemberMenu {
 		this.ver = ver;
 	}
 	
+
 	// main menu
 	public void mainMenu() throws Exception {
 		
@@ -28,14 +29,14 @@ public class MemberMenu {
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader(isr);
 			
-			switch(br.read()) {
-			case '1' : bddao.Addmember(); break;
-			case '2' : bddao.Viewmembers(); break;
-			case '3' : bddao.Viewmemberdetails(0); break;
-			case '4' : bddao.Modifymemberinformation(0,"","",""); break;
-			case '5' : bddao.Deletememberinformation(0); break;
-			case '6' : bddao.Searchbyname(null); break;
-			case '7' : bddao.Searchbyemail(null); break;
+			switch((char)br.read()) {
+			case '1' : bddao.createMember(); break;
+			case '2' : bddao.listMember(); break;
+			case '3' : bddao.viewMember(null);break;
+			case '4' : bddao.updateMember(null);break;
+			case '5' : bddao.deleteMember(null);break;
+			case '6' : bddao.findByNameMember(null);break;
+			case '7' : bddao.findByEmailMember(null);break;
 			case '0' : System.out.println("프로그램 종료"); System.exit(0);
 			}
 			
@@ -63,54 +64,112 @@ public class MemberMenu {
 		
 	}
 
-	public void mainBoardMenu() {
+	public void mainMemberMenu() {
+		
 		MemberDAOImpl bddao = MemberFactory.getInstance();
 		
 		while(true) {
 			int menuNo = mainMenuUi();
+			
 			switch(menuNo) {
-			case 1 : Addmember(bddao); break;
-			case 2 : Viewmembers(bddao); break;
-			case 3 : Viewmemberdetails(bddao); break;
-			case 4 : Modifymemberinformation(bddao); break;
-			case 5 : Deletememberinformation(bddao); break;
+			case 1 : createMember(bddao); break;
+			case 2 : listMember(bddao); break;
+			case 3 : memberView(bddao); break;
+			case 4 : updateMember(bddao); break;
+			case 5 : deleteMember(bddao); break;
 			case 6 : Searchbyname(bddao); break;
-			case 7 : Searchbyname(bddao); break;
+			case 7 : Searchbyemail(bddao); break;
 			case 0 : System.out.println("프로그램 종료"); System.exit(0);
 			}
 		}
 		
 		
 	}
+	private void Viewmembers(MemberDAOImpl bddao) {
+		// TODO Auto-generated method stub
+		
+	}
 
+
+	private void Searchbyemail(MemberDAOImpl bddao) {
+		String member_email = JOptionPane.showInputDialog("회원의 이메일을 입력하세요");
+		ArrayList<MemberVO> members = bddao.findByEmailMember(member_email);
+		
+		System.out.println("====================================================");
+		System.out.println("회원아이디\t회원이름\t회원나이\t회원성별\t회원이메일");
+		System.out.println("====================================================");
+		
+		for(MemberVO member:members) {
+			System.out.println(member.toString());
+		}
+		System.out.println("==================조회 종료===========================");
+	}
+		
+	
 
 	private void Searchbyname(MemberDAOImpl bddao) {
-		// TODO Auto-generated method stub
+		String member_name = JOptionPane.showInputDialog("검색할 회원 이름을 입력하세요");
+		ArrayList<MemberVO> members = bddao.findByNameMember(member_name);
+		
+		System.out.println("====================================================");
+		System.out.println("회원아이디\t회원이름\t회원나이\t회원성별\t회원이메일");
+		System.out.println("====================================================");
+		
+		for(MemberVO member:members) {
+			System.out.println(member.toString());
+		}
+		System.out.println("==================조회 종료===========================");
+	}
+
+	private void deleteMember(MemberDAOImpl bddao) {
+		String member_id = JOptionPane.showInputDialog("삭제할 ID를 입력하세요");
+		
+		if((member_id == null) || (member_id.equals(""))) {
+			return;
+		}else {
+			bddao.deleteMember(member_id);
+		}
 		
 	}
 
-	private void Deletememberinformation(MemberDAOImpl bddao) {
-		// TODO Auto-generated method stub
+	private void updateMember(MemberDAOImpl bddao) {
+		String member_id = JOptionPane.showInputDialog("변경할 ID를 입력하세요");
+		
+		if((member_id == null) || (member_id.equals(""))) {
+			return;
+		}else {
+			bddao.updateMember(member_id);
+		}
 		
 	}
 
-	private void Modifymemberinformation(MemberDAOImpl bddao) {
-		// TODO Auto-generated method stub
+	private void memberView(MemberDAOImpl bddao) {
+		String member_id = JOptionPane.showInputDialog("조회할 회원의 id를 입력하세요");
 		
+		if((member_id == null) || member_id.equals("")){
+		return;
+	}else {
+		MemberVO member = bddao.viewMember(member_id);
+		System.out.println("회원아이디 : " + member.getMember_id());
+		System.out.println("회원명     : " + member.getMember_name());
+		System.out.println("회원이메일 : " + member.getMember_email());
+		}
 	}
 
-	private void Viewmemberdetails(MemberDAOImpl bddao) {
-		// TODO Auto-generated method stub
-		
+	private void listMember(MemberDAOImpl bddao) {
+	ArrayList<MemberVO> members = bddao.listMember();
+	System.out.println("===================================");
+	System.out.println("아이디\t\t비밀번호\t\t이름\t\t나이");
+	System.out.println("===================================");
+	for(MemberVO member:members) {
+		System.out.println(member.toString());
+	}
+	System.out.println("---------전체 회원 출력 종료--------\n\n");
 	}
 
-	private void Viewmembers(MemberDAOImpl bddao) {
-	ArrayList<MemberVo> members = 
-		
-	}
-
-	private void Addmember(MemberDAOImpl bddao) {
-		bddao.Addmember();
+	
+	private void createMember(MemberDAOImpl bddao) {
+			bddao.createMember();
 		
 	}
 
